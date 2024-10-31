@@ -9,15 +9,15 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table";
-  import { Button } from "@/components/ui/button"
   import Image from "next/image";
+import { AddCategory } from "@/components/AddCategory/AddCategory";
   
   const categories = [
     {
       
-      thumbnail: "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmlydGhkYXl8ZW58MHx8MHx8fDA%3D",
-      title: "Birthday Event",
-      description: "Birthday of this",
+      thumbnail: "https://images.unsplash.com/photo-1512719994953-eabf50895df7?q=80&w=1929&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Sports",
+      description: "Outdoor Cricket",
      
     },
     {
@@ -43,7 +43,7 @@ import {
       <div className="min-h-screen px-20 pt-10">
         <div className="flex justify-between">
             <h1 className="font-bold">All Categories</h1>
-            
+            <AddCategory/>
         </div>
         <Table>
           <TableCaption>A list of Categories</TableCaption>

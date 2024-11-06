@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import {
     Table,
     TableBody,
@@ -10,7 +8,7 @@ import {
     TableRow,
   } from "@/components/ui/table";
   import Image from "next/image";
-import { AddCategory } from "@/components/AddCategory/AddCategory";
+import { AddCategory } from "./components/AddCategory/AddCategory";
   
   const categories = [
     {

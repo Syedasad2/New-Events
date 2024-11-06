@@ -1,90 +1,79 @@
-import { getCategories } from "@/actions/categories";
-import { getSubCategories } from "@/actions/subcategories";
-import { AddSubCategory } from "@/components/AddSubCategory/AddSubCategory";
-import CategoryDropdown from "@/components/CategoryDropdown/CategoryDropdown";
+
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+  } from "@/components/ui/table";
+  import Image from "next/image";
+import { AddSubCategory } from "@/components/AddSubCategory/AddSubCategory";
 
-import Image from "next/image";
-
-// const subcategories = [
-//   {
-//     title: "Cricket",
-//     category: "Sports",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1470920456752-d50214d7ed59?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y3ljbGluZ3xlbnwwfHwwfHx8MA%3D%3D",
-//     description: "All Community Members will be have cycling Race",
-//   },
-//   {
-//     title: "Footbal",
-//     category: "Sports",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1470920456752-d50214d7ed59?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y3ljbGluZ3xlbnwwfHwwfHx8MA%3D%3D",
-//     description: "All Community Members will be have cycling Race",
-//   },
-//   {
-//     title: "Tennis",
-//     category: "Sports",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1470920456752-d50214d7ed59?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y3ljbGluZ3xlbnwwfHwwfHx8MA%3D%3D",
-//     description: "All Community Members will be have cycling Race",
-//   },
-// ];
-
-export default async function SubCategories({ searchParams }) {
-  console.log("searchParams=>", searchParams);
-
-  const subcategories = await getSubCategories(searchParams?.category);
-  const categories = (await getCategories()).categories;
-  return (
-    <div className="min-h-screen mx-10 px-1">
-      <div className="flex justify-between items-center my-4">
-        <h1 className="font-bold text-xl">SubCategories</h1>
-        <div className="flex gap-3">
-          <CategoryDropdown categories={categories} />
-          <AddSubCategory categories = {categories} />
+  
+  const subcategories = [
+    {
+      
+      thumbnail: "https://images.unsplash.com/photo-1512719994953-eabf50895df7?q=80&w=1929&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Cricket",
+      category:"Sports",
+      description: "Outdoor Cricket",
+     
+    },
+    {
+      
+      thumbnail: "https://images.unsplash.com/photo-1512719994953-eabf50895df7?q=80&w=1929&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "BaseBall",
+      category:"Sports",
+      description: "Outdoor Cricket",
+     
+    },
+    {
+      
+      thumbnail: "https://images.unsplash.com/photo-1512719994953-eabf50895df7?q=80&w=1929&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Football",
+      category:"Sports",
+      description: "Outdoor Cricket",
+     
+    },
+  
+  
+    
+  ];
+  
+  export default function SubCategories() {
+    return (
+      <div className="min-h-screen px-20 pt-10">
+        <div className="flex justify-between">
+            <h1 className="font-bold">All Sub-Categories</h1>
+            <AddSubCategory/>
         </div>
-      </div>
-
-      <Table>
-        <TableCaption>A list of your subcategories.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Thumbnail</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>Title</TableHead>
-            <TableHead>Description</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {subcategories?.subCategories?.map((subCat) => (
-            <TableRow key={subCat.title}>
-              <TableCell className="text-right">
-                <Image
-                  src={subCat.thumbnail}
-                  style={{ objectFit: "cover" }}
-                  height={40}
-                  width={40}
-                />
-              </TableCell>
-              <TableCell className="font-medium">
-                {subCat.category?.title}
-              </TableCell>
-              <TableCell className="font-medium">{subCat.title}</TableCell>
-              <TableCell className="font-medium">
-                {subCat.description}
-              </TableCell>
+        <Table>
+          <TableCaption>A list of Sub-Categories</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Thumbnail</TableHead>
+              
+              <TableHead>Title</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead>Description</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
-  );
-}
+          </TableHeader>
+          <TableBody>
+            {subcategories.map((subcategories) => (
+              <TableRow key={subcategories.title}>
+                <TableCell> <Image src={subcategories.thumbnail} height={80} width={100} className="rounded-md"/> </TableCell>
+                <TableCell className="font-medium">{subcategories.title}</TableCell>
+                <TableCell className="font-medium">{subcategories.category}</TableCell>
+
+  
+                <TableCell className="font-medium">{subcategories.description}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  }
+  

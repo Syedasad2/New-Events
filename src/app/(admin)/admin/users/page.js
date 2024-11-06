@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const users = [
   {
-    Name: "Syed Asad",
+   fullname: "Syed Asad",
     email: "syed@gmail.com",
     location: "karachi",
     profileimage:
@@ -54,9 +54,9 @@ export default function Users() {
         </TableHeader>
         <TableBody>
           {users.map((users) => (
-            <TableRow key={users.Name}>
+            <TableRow key={users.fullname}>
               <TableCell> <Image src={users.profileimage} height={40} width={40} className="rounded-md"/> </TableCell>
-              <TableCell className="font-medium">{users.Name}</TableCell>
+              <TableCell className="font-medium">{users.fullname}</TableCell>
 
               <TableCell className="font-medium">{users.email}</TableCell>
               <TableCell>{users.location}</TableCell>

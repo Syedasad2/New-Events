@@ -1,12 +1,13 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs";
 import Link from "next/link";
 
 export default function Layout({ children }) {
   return (
     <html>
-      <body>
-        <Tabs defaultValue="dashboard" className="w-full ">
-          <TabsList>
+      <body >
+        <Tabs defaultValue="dashboard" className="w-full">
+          <TabsList className="w-full">
+
             <Link href="/admin/dashboard">
               <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             </Link>
@@ -23,6 +24,7 @@ export default function Layout({ children }) {
               <TabsTrigger value="events">events</TabsTrigger>
             </Link>
           </TabsList>
+          <TabsContent value="Home">{children}</TabsContent>
           <TabsContent value="dashboard">{children}</TabsContent>
           <TabsContent value="users">{children}</TabsContent>
           <TabsContent value="categories">{children}</TabsContent>

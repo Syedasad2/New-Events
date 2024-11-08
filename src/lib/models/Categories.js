@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
-
 const { Schema } = mongoose;
 
-const categoriesSchema= new Schema({
-    title:String,
-    description:String,
-    thumbnail:String,
+const categoriesSchema = new Schema({
+    title:{type: String, required : true},
+    description:{type: String, required : true},
+    thumbnail:{type: String, required : true},
 
 })
 
-export const CategoryModal= mongoose.model("Categories",categoriesSchema);
+export const CategoryModel= mongoose.models.Categories || mongoose.model("Categories",categoriesSchema);

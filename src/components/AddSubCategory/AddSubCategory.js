@@ -39,7 +39,7 @@ export function AddSubCategory() {
           <DialogHeader>
             <DialogTitle>Add SubCategory</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when done.
+              Make changes to your profile here.Click save when done.
             </DialogDescription>
           </DialogHeader>
           <ProfileForm />
@@ -57,7 +57,7 @@ export function AddSubCategory() {
         <DrawerHeader className="text-left">
           <DrawerTitle>Edit profile</DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your profile here. Click save when you are done.
           </DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4" />

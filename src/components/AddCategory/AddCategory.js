@@ -39,7 +39,7 @@ export function AddCategory() {
           <DialogHeader>
             <DialogTitle>Add Category</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you are done.
+              Make changes to your profile here.Click save when you are done.
             </DialogDescription>
           </DialogHeader>
           <ProfileForm />

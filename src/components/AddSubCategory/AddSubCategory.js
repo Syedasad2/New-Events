@@ -25,7 +25,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function addSubCategory() {
+export function AddSubCategory() {
   const [open, setOpen] = React.useState(false)
   const isDesktop = true
 

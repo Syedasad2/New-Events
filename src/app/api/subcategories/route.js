@@ -1,9 +1,6 @@
 import connectDb from "@/lib/db/connectDb";
 import { SubCategorymodal } from "@/lib/models/subcategories";
 
-
-
-
 export async function GET(request) {
  await connectDb();
  const reqUrl = request.url;

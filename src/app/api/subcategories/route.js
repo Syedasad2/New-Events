@@ -1,44 +1,41 @@
 import connectDb from "@/lib/db/connectDb";
-import { subCategoriesmodal } from "@/lib/models/subCategories";
+import { SubCategorymodal } from "@/lib/models/subcategories";
+
+
+
 
 export async function GET(request) {
-  try {
-    await connectDb();
-    const subcategories = await subCategoriesmodal.find();
-    return Response.json({
-      msg: "SubCategories Fetched Successfully",
-      subcategories: subcategories || [], 
-    }, { status: 200 });
-  } catch (error) {
-    return Response.json({
-      msg: "Failed to fetch SubCategories",
-      error: error.message,
-    }, { status: 500 });
-  }
-}
-export async function POST(request) {
-  try {
-    await connectDb();
-    const obj = await request.json();
-    const newSubCategory = new subCategoriesmodal(obj);
-    await newSubCategory.save();
-    return Response.json({
-      msg: "SubCategory Added Successfully",
-      subcategory: newSubCategory, 
-    }, { status: 201 });
-  } catch (error) {
-    return Response.json({
-      msg: "Failed to add SubCategory",
-      error: error.message,
-    }, { status: 500 });
-  }
-}
+ await connectDb();
+ const reqUrl = request.url;
+ const { searchParams } = new URL(reqUrl);
+ const query = {};
+ if(searchParams.get("category")){
+  query.category = searchParams.get("category");
+ }
 
+ const subCategories = await SubCategorymodal.find(query);
 
-export async function PUT(request) {
+ return Response.json( {
+  msg: "SubCategories Fetched Successfully",
+  subCategories,
+},{ status: 200});
 
 }
 
-export async function DELETE(request) {
-
+export async function POST(request){
+  await connectDb();
+  const obj = await request.json();
+  let newSubCategory = new SubCategorymodal(obj);
+  await newSubCategory.save();
+  return Response.json(
+    {
+    msg:"SubCategories added successfull", 
+    newSubCategory: newSubCategory,
+  },
+  { status: 201 }
+);
 }
+
+export async function PUT(request) {}
+
+export async function DELETE(request) {}

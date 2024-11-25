@@ -17,6 +17,6 @@ const userSchema= new Schema({
         enum : ["user","admin"],
     },
 });
-export const UserModel = 
+export const UserModal = 
 mongoose.models.Users || mongoose.model("Users",userSchema);
 

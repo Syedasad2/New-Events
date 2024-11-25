@@ -1,10 +1,12 @@
+
 import connectDb from "@/lib/db/connectDb";
-import { UserModel } from "@/lib/models/User";
-import { bcrypt } from "bcrypt";
+import { UserModal } from "@/lib/models/User";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function GET(request) {
   await connectDb();
-  const users = await UserModel.find();
+  const users = await UserModal.find();
   return Response.json(
     {
       msg: "Users Fetched Successfully",
@@ -17,24 +19,33 @@ export async function GET(request) {
 export async function POST(request) {
   await connectDb();
   const obj = await request.json();
-  const user = await UserModel.findOne({ email: obj.email });
+  const user = await UserModal.findOne({ email: obj.email });
+
   if (user)
     return Response.json(
-      { error: true, msg: "User already Exist" },
+      { error: true, msg: "User with this email already Exist" },
       { status: 403 }
     );
 
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(obj.password, saltRounds);
   obj.password = hashedPassword;
-  console.log("obj=>>", obj);
 
-  // let newUser = new UserModel(obj);
-  // await newUser.save();
+  let newUser = new UserModal(obj);
+  await newUser.save();
+
+  var token = jwt.sign(
+    { _id: newUser._id, role: newUser.role },
+    process.env.JWT_KEY
+  );
+
+  console.log("obj=>", obj);
+
   return Response.json(
     {
-      msg: "User added successfull",
+      msg: "Users Added Successfully ",
       user: newUser,
+      token,
     },
     { status: 201 }
   );
